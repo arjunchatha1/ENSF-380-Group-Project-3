@@ -7,7 +7,7 @@ import edu.ucalgary.oop.FamilyRelation;
 
 public class DisasterVictim {
   private String firstName;
-  private string lastName;
+  private String lastName;
   private LocalDate dateOfBirth;
   private FamilyRelation[] familyConnections;
   private MedicalRecord[] medicalRecords;
@@ -35,7 +35,7 @@ public class DisasterVictim {
     this.firstName = firstName;
   }
 
-  public string getLastName() {
+  public String getLastName() {
     return lastName;
   }
 
