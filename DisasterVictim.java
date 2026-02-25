@@ -93,12 +93,12 @@ public class DisasterVictim {
     return personalBelongings;
   }
 
-  public addPersonalBelonging(Supply belonging) {
+  public void addPersonalBelonging(Supply belonging) {
     personalBelongings = Arrays.copyOf(personalBelongings, personalBelongings.length + 1);
     personalBelongings[-1] = belonging;
   }
 
-  public removePersonalBelonging(Supply belonging) {
+  public void removePersonalBelonging(Supply belonging) {
     Supply[] newArray = new Supply[personalBelongings.length - 1];
     int i = 0;
     for (Supply elem : personalBelongings) {
