@@ -39,7 +39,7 @@ public class ReliefService {
     return dateOfInquiry;
   }
 
-  public void setDateOfInquiry(LocalDate inquiryDate) {
+  public void setDateOfInquiry(LocalDate inquiryDate) throws IllegalArgumentException {
     // Handle null input
     if (inquiryDate == null) {
       throw new IllegalArgumentException("inquiryDate cannot be null");
