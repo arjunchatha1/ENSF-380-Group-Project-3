@@ -3,8 +3,6 @@ package edu.ucalgary.oop;
 import java.time.LocalDate;
 import java.util.Arrays;
 
-import com.sun.tools.classfile.Annotation.element_value;
-
 public class DisasterVictim {
   private String firstName;
   private String lastName;
