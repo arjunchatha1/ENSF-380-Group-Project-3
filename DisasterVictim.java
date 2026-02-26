@@ -78,8 +78,9 @@ public class DisasterVictim {
   }
 
   public void removeFamilyConnection(FamilyRelation connection) throws IllegalArgumentException {
-    if (familyConnections.length == 0) {
-      throw new IllegalArgumentException("Cannot remove from empty familyConnections");
+    // Handle connection to remove not found
+    if (!Arrays.asList(familyConnections).contains(connection)) {
+      throw new IllegalArgumentException("Cannot remove connection not found in familyConnections");
     }
 
     FamilyRelation[] newArray = new FamilyRelation[familyConnections.length - 1];
@@ -90,6 +91,7 @@ public class DisasterVictim {
         i++;
       }
     }
+
     familyConnections = newArray;
   }
 
@@ -116,8 +118,9 @@ public class DisasterVictim {
   }
 
   public void removePersonalBelonging(Supply belonging) throws IllegalArgumentException {
-    if (personalBelongings.length == 0) {
-      throw new IllegalArgumentException("Cannot remove from empty personalBelongings");
+    // Handle belonging to remove not found
+    if (!Arrays.asList(personalBelongings).contains(belonging)) {
+      throw new IllegalArgumentException("Cannot remove belonging not found in personalBelongings");
     }
 
     Supply[] newArray = new Supply[personalBelongings.length - 1];
@@ -128,6 +131,7 @@ public class DisasterVictim {
         i++;
       }
     }
+ 
     personalBelongings = newArray;
   }
 
@@ -175,7 +179,19 @@ public class DisasterVictim {
 
     // Checks that somebody cannot be a 'Man' if they are a child.
     if (newGender.equals("Man") && LocalDate.now().minusYears(18).isBefore(dateOfBirth)) {
-      throw new IllegalArgumentException("Child (under 18) cannot have gender 'Man");
+      throw new IllegalArgumentException("Child (under 18) cannot have gender 'Man'");
+    }
+    // Checks that somebody cannot be a 'Woman' if they are a child.
+    if (newGender.equals("Woman") && LocalDate.now().minusYears(18).isBefore(dateOfBirth)) {
+      throw new IllegalArgumentException("Child (under 18) cannot have gender 'Woman'");
+    }
+    // Checks that somebody cannot be a 'Boy' if they are an adult.
+    if (newGender.equals("Boy") && LocalDate.now().minusYears(18).isAfter(dateOfBirth)) {
+      throw new IllegalArgumentException("Adult (18 or older) cannot have gender 'Boy'");
+    }
+    // Checks that somebody cannot be a 'Girl' if they are an adult.
+    if (newGender.equals("Girl") && LocalDate.now().minusYears(18).isAfter(dateOfBirth)) {
+      throw new IllegalArgumentException("Adult (18 or older) cannot have gender 'Girl'");
     }
 
     this.gender = newGender;
